@@ -47,15 +47,26 @@ npm run build
 npm start
 ```
 
-### Vercel Deployment
+### Deployment (Docker/Render/Railway)
 
-1.  Install Vercel CLI: `npm i -g vercel`
-2.  Login: `vercel login`
-3.  Deploy: `vercel`
-4.  Set the environment variable in Vercel:
-    - `COUNTRYLAYER_API_KEY`
+This server is designed to be deployed as a Docker container.
 
-**Note on Vercel & SSE**: This server uses Server-Sent Events (SSE) for MCP communication. Vercel Serverless Functions have execution timeouts (default 10s, up to 60s on Pro). Long-lived connections may be interrupted. For production use with persistent connections, consider a platform that supports long-running processes (e.g., Render, Fly.io, or a VPS).
+#### Deploy on Render
+
+1.  Create a new **Web Service** on Render.
+2.  Connect your GitHub repository.
+3.  Render will automatically detect the `Dockerfile`.
+4.  Add the Environment Variable: `COUNTRYLAYER_API_KEY`.
+5.  Deploy.
+
+#### Deploy on Railway
+
+1.  New Project -> Deploy from GitHub.
+2.  Select the repository.
+3.  Add the Variable `COUNTRYLAYER_API_KEY`.
+4.  Railway will build using the Dockerfile.
+
+**Note**: Vercel Serverless Functions are **not recommended** for this MCP server because they do not support the long-lived concurrent connections required for the SSE transport.
 
 ## MCP Tools
 
