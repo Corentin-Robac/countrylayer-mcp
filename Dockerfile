@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # Run the web service on container startup.
-CMD [ "node", "dist/web-server.js" ]
+CMD [ "node", "dist/src/web-server.js" ]
 
 # Expose the port (Render/Railway usually set PORT env var, we need to listen on it)
 # The Stdio transport doesn't use a port, but for a web deployment we need the SSEServerTransport.
